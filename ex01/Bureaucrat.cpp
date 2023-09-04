@@ -6,7 +6,7 @@
 /*   By: mjourno <mjourno@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 10:46:34 by mjourno           #+#    #+#             */
-/*   Updated: 2023/09/04 16:27:14 by mjourno          ###   ########.fr       */
+/*   Updated: 2023/09/04 17:13:59 by mjourno          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ void	Bureaucrat::decrement() {
 std::ostream	&operator<<(std::ostream &o, const Bureaucrat &src) {
 	o << src.getName() << ", bureaucrat grade " << src.getGrade();
 	return (o);
+}
+
+//ex01
+void	Bureaucrat::signForm(Form &src) {
+	if (src.getSigned()) {
+		std::cout << _name << " couldn't sign " << src.getName() << " because already signed" << std::endl;
+		return;
+	}
+	try {
+		src.beSigned(*this);
+		std::cout << _name << " signed " << src.getName() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << _name << " couldn't sign " << src.getName() << " because " << e.what() << std::endl;
+	}
 }
